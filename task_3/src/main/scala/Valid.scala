@@ -1,4 +1,4 @@
-object Validators extends App {
+object Valid extends App {
 
   trait Validator[T] {
     def validate(v: T): Boolean
@@ -13,13 +13,13 @@ object Validators extends App {
   def check[T: Validator](v: T): Unit =
     println(if (implicitly[Validator[T]].validate(v)) "Оки" else "Ошибка!")
 
-  
+
   implicit class ValidOps[T: Validator](v: T) {
     def isValid: Boolean = implicitly[Validator[T]].validate(v)
   }
 
   // простенький тест
-  check("hello")
+  check("привет")
   check("")
   check(10)
   check(-5)
